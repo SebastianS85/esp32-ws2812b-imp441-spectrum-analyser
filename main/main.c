@@ -385,7 +385,7 @@ void app_main(void)
     imp441_config_t mic_config = {
         .bck_io_num = I2S_BCK_IO,
         .ws_io_num = I2S_WS_IO,
-        .data_in_num = I2S_DI_IO,
+        .data_in_num = I2S_DATA_IN_IO,
         .sample_rate = SAMPLE_RATE,
         .bits_per_sample = 32
     };
