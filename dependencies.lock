@@ -1,0 +1,15 @@
+dependencies:
+  espressif/esp-dsp:
+    component_hash: 42dce32d46ac93dc11f60d368e29a830e9661c7345d794b8a45c343479cae636
+    source:
+      service_url: https://api.components.espressif.com/
+      type: service
+    version: 1.7.0
+  idf:
+    component_hash: null
+    source:
+      type: idf
+    version: 5.3.0
+manifest_hash: 537cd3de652e8886b70fbc3cf5190a7439b941552bc888a195525aeeacff75bf
+target: esp32c6
+version: 1.0.0
