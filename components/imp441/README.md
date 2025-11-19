@@ -1,4 +1,4 @@
-# IMP44 Microphone Component
+# IMP441 Microphone Component
 
 ESP-IDF component for the IMP441 MEMS microphone using I2S interface.
 
@@ -24,13 +24,13 @@ ESP-IDF component for the IMP441 MEMS microphone using I2S interface.
 ## Usage Example
 
 ```c
-#include "imp44.h"
+#include "imp441.h"
 #include "esp_log.h"
 
 void app_main(void)
 {
     // Configure microphone
-    imp44_config_t mic_config = {
+    imp441_config_t mic_config = {
         .bck_io_num = 14,
         .ws_io_num = 15,
         .data_in_num = 32,
@@ -39,22 +39,22 @@ void app_main(void)
     };
 
     // Initialize microphone
-    imp44_handle_t mic_handle = {0};
-    esp_err_t ret = imp44_init(&mic_handle, &mic_config);
+    imp441_handle_t mic_handle = {0};
+    esp_err_t ret = imp441_init(&mic_handle, &mic_config);
     if (ret != ESP_OK) {
         ESP_LOGE("APP", "Failed to initialize microphone");
         return;
     }
 
     // Start recording
-    imp44_start(&mic_handle);
+    imp441_start(&mic_handle);
 
     // Read audio data
     int32_t audio_buffer[1024];
     size_t bytes_read;
     
     while (1) {
-        ret = imp44_read(&mic_handle, audio_buffer, sizeof(audio_buffer), &bytes_read, 1000);
+        ret = imp441_read(&mic_handle, audio_buffer, sizeof(audio_buffer), &bytes_read, 1000);
         if (ret == ESP_OK) {
             // Process audio data
             ESP_LOGI("APP", "Read %d bytes", bytes_read);
@@ -62,8 +62,8 @@ void app_main(void)
     }
 
     // Stop and cleanup
-    imp44_stop(&mic_handle);
-    imp44_deinit(&mic_handle);
+    imp441_stop(&mic_handle);
+    imp441_deinit(&mic_handle);
 }
 ```
 
@@ -71,15 +71,15 @@ void app_main(void)
 
 ### Functions
 
-- `imp44_init()` - Initialize the microphone with configuration
-- `imp44_deinit()` - Deinitialize and free resources
-- `imp44_start()` - Start audio capture
-- `imp44_stop()` - Stop audio capture
-- `imp44_read()` - Read audio data from microphone
+- `imp441_init()` - Initialize the microphone with configuration
+- `imp441_deinit()` - Deinitialize and free resources
+- `imp441_start()` - Start audio capture
+- `imp441_stop()` - Stop audio capture
+- `imp441_read()` - Read audio data from microphone
 
 ### Configuration
 
-The `imp44_config_t` structure contains:
+The `imp441_config_t` structure contains:
 - `bck_io_num`: GPIO for bit clock
 - `ws_io_num`: GPIO for word select
 - `data_in_num`: GPIO for data input

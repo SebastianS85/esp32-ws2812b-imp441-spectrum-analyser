@@ -1,10 +1,10 @@
 /*
- * IMP44 MEMS Microphone Component
+ * IMP441 MEMS Microphone Component
  * I2S interface driver for IMP441 microphone
  */
 
-#ifndef IMP44_H
-#define IMP44_H
+#ifndef IMP441_H
+#define IMP441_H
 
 #include <stdint.h>
 #include "esp_err.h"

@@ -292,7 +292,7 @@ static esp_err_t init_led_strip(void)
  */
 static void spectrum_task(void *pvParameters)
 {
-    imp44_handle_t *mic_handle = (imp44_handle_t *)pvParameters;
+    imp441_handle_t *mic_handle = (imp441_handle_t *)pvParameters;
     int32_t audio_buffer[FFT_SIZE];
     size_t bytes_read;
     
@@ -311,7 +311,7 @@ static void spectrum_task(void *pvParameters)
     
     while (1) {
         // Read audio data from microphone
-        ret = imp44_read(mic_handle, audio_buffer, sizeof(audio_buffer), &bytes_read, READ_TIMEOUT_MS);
+        ret = imp441_read(mic_handle, audio_buffer, sizeof(audio_buffer), &bytes_read, READ_TIMEOUT_MS);
         
         if (ret == ESP_OK) {
             size_t samples = bytes_read / sizeof(int32_t);
@@ -382,19 +382,19 @@ void app_main(void)
              EXAMPLE_LED_NUMBERS, DIGITS, NUM_BANDS);
 
     // Configure microphone
-    imp44_config_t mic_config = {
+    imp441_config_t mic_config = {
         .bck_io_num = I2S_BCK_IO,
         .ws_io_num = I2S_WS_IO,
-        .data_in_num = I2S_DATA_IN_IO,
+        .data_in_num = I2S_DI_IO,
         .sample_rate = SAMPLE_RATE,
-        .bits_per_sample = BITS_PER_SAMPLE
+        .bits_per_sample = 32
     };
 
     // Initialize microphone
-    static imp44_handle_t mic_handle = {0};
-    ret = imp44_init(&mic_handle, &mic_config);
+    static imp441_handle_t mic_handle = {0};
+    ret = imp441_init(&mic_handle, &mic_config);
     if (ret != ESP_OK) {
-        ESP_LOGE(TAG, "Failed to initialize IMP44: %s", esp_err_to_name(ret));
+        ESP_LOGE(TAG, "Failed to initialize IMP441: %s", esp_err_to_name(ret));
         return;
     }
 
@@ -402,7 +402,7 @@ void app_main(void)
     vTaskDelay(pdMS_TO_TICKS(100));
 
     // Start microphone
-    ret = imp44_start(&mic_handle);
+    ret = imp441_start(&mic_handle);
     if (ret != ESP_OK) {
         ESP_LOGE(TAG, "Failed to start IMP44: %s", esp_err_to_name(ret));
         imp44_deinit(&mic_handle);

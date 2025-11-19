@@ -1,6 +1,6 @@
 # Audio Spectrum Analyzer for ESP32
 
-Real-time FFT-based audio spectrum analyzer using IMP44/IMP441 MEMS microphone and WS2812B LED display.
+Real-time FFT-based audio spectrum analyzer using IMP441 MEMS microphone and WS2812B LED display.
 
 **Tested on:** 7-segment LED display (3 digits × 29 LEDs + 1 offset LED = 88 LEDs total)
 
@@ -16,7 +16,7 @@ Real-time FFT-based audio spectrum analyzer using IMP44/IMP441 MEMS microphone a
 
 ## Hardware Requirements
 
-### Microphone (IMP44/IMP441)
+### Microphone (IMP441)
 - **VDD** → 3.3V
 - **GND** → GND
 - **SD** (Serial Data) → GPIO 4
@@ -171,9 +171,9 @@ equalizer/
 │   ├── CMakeLists.txt            # Component build config
 │   └── idf_component.yml         # Component dependencies
 ├── components/
-│   └── imp44/                    # IMP44 microphone driver
-│       ├── imp44.c               # Driver implementation
-│       ├── imp44.h               # Public API
+│   └── imp441/                   # IMP441 microphone driver
+│       ├── imp441.c              # Driver implementation
+│       ├── imp441.h              # Public API
 │       ├── CMakeLists.txt        # Component build config
 │       └── README.md             # Component documentation
 ├── CMakeLists.txt                # Project build config
@@ -248,7 +248,7 @@ This project is provided as-is for educational and personal use.
 
 - ESP-IDF framework by Espressif Systems
 - ESP-DSP library for FFT processing
-- IMP44/IMP441 MEMS microphone driver (custom implementation)
+- IMP441 MEMS microphone driver (custom implementation)
 - WS2812B LED strip encoder (custom RMT implementation)
 
 ---

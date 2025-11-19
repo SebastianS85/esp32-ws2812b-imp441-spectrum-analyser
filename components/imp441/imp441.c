@@ -1,17 +1,17 @@
 /*
- * IMP44 MEMS Microphone Component Implementation
+ * IMP441 MEMS Microphone Component Implementation
  * I2S interface driver for IMP441 microphone
  */
 
-#include "imp44.h"
+#include "imp441.h"
 #include "esp_log.h"
 #include "driver/i2s_std.h"
 #include "driver/gpio.h"
 #include <string.h>
 
-static const char *TAG = "IMP44";
+static const char *TAG = "IMP441";
 
-esp_err_t imp44_init(imp44_handle_t *handle, const imp44_config_t *config)
+esp_err_t imp441_init(imp441_handle_t *handle, const imp441_config_t *config)
 {
     if (handle == NULL || config == NULL) {
         ESP_LOGE(TAG, "Invalid parameters");
@@ -24,10 +24,10 @@ esp_err_t imp44_init(imp44_handle_t *handle, const imp44_config_t *config)
     }
 
     // Clear handle structure
-    memset(handle, 0, sizeof(imp44_handle_t));
+    memset(handle, 0, sizeof(imp441_handle_t));
     
     // Store configuration
-    memcpy(&handle->config, config, sizeof(imp44_config_t));
+    memcpy(&handle->config, config, sizeof(imp441_config_t));
 
     // Configure I2S channel
     i2s_chan_config_t chan_cfg = I2S_CHANNEL_DEFAULT_CONFIG(I2S_NUM_AUTO, I2S_ROLE_MASTER);
@@ -68,7 +68,7 @@ esp_err_t imp44_init(imp44_handle_t *handle, const imp44_config_t *config)
     }
 
     handle->is_initialized = true;
-    ESP_LOGI(TAG, "IMP44 initialized successfully");
+    ESP_LOGI(TAG, "IMP441 initialized successfully");
     ESP_LOGI(TAG, "Sample rate: %lu Hz, Bits: %d", config->sample_rate, config->bits_per_sample);
     ESP_LOGI(TAG, "GPIO - BCK: %d, WS: %d, DIN: %d", 
              config->bck_io_num, config->ws_io_num, config->data_in_num);
@@ -76,7 +76,7 @@ esp_err_t imp44_init(imp44_handle_t *handle, const imp44_config_t *config)
     return ESP_OK;
 }
 
-esp_err_t imp44_deinit(imp44_handle_t *handle)
+esp_err_t imp441_deinit(imp441_handle_t *handle)
 {
     if (handle == NULL) {
         ESP_LOGE(TAG, "Invalid handle");
@@ -99,14 +99,14 @@ esp_err_t imp44_deinit(imp44_handle_t *handle)
     }
 
     // Clear handle
-    memset(handle, 0, sizeof(imp44_handle_t));
+    memset(handle, 0, sizeof(imp441_handle_t));
     
-    ESP_LOGI(TAG, "IMP44 deinitialized");
+    ESP_LOGI(TAG, "IMP441 deinitialized");
 
     return ESP_OK;
 }
 
-esp_err_t imp44_start(imp44_handle_t *handle)
+esp_err_t imp441_start(imp441_handle_t *handle)
 {
     if (handle == NULL) {
         ESP_LOGE(TAG, "Invalid handle");
@@ -124,11 +124,11 @@ esp_err_t imp44_start(imp44_handle_t *handle)
         return ret;
     }
 
-    ESP_LOGI(TAG, "IMP44 started");
+    ESP_LOGI(TAG, "IMP441 started");
     return ESP_OK;
 }
 
-esp_err_t imp44_stop(imp44_handle_t *handle)
+esp_err_t imp441_stop(imp441_handle_t *handle)
 {
     if (handle == NULL) {
         ESP_LOGE(TAG, "Invalid handle");
@@ -146,11 +146,11 @@ esp_err_t imp44_stop(imp44_handle_t *handle)
         return ret;
     }
 
-    ESP_LOGI(TAG, "IMP44 stopped");
+    ESP_LOGI(TAG, "IMP441 stopped");
     return ESP_OK;
 }
 
-esp_err_t imp44_read(imp44_handle_t *handle, void *dest, size_t size, size_t *bytes_read, uint32_t timeout_ms)
+esp_err_t imp441_read(imp441_handle_t *handle, void *dest, size_t size, size_t *bytes_read, uint32_t timeout_ms)
 {
     if (handle == NULL || dest == NULL || bytes_read == NULL) {
         ESP_LOGE(TAG, "Invalid parameters");

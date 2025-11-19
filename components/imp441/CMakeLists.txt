@@ -1,3 +1,3 @@
-idf_component_register(SRCS "imp44.c"
+idf_component_register(SRCS "imp441.c"
                     INCLUDE_DIRS "include"
                     REQUIRES driver)
