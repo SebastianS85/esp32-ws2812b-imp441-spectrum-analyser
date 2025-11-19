@@ -80,6 +80,6 @@ C:/esp_projects/equalizer/build/esp-idf/mqtt/libmqtt.a
 C:/esp_projects/equalizer/build/esp-idf/nvs_sec_provider/libnvs_sec_provider.a
 C:/esp_projects/equalizer/build/esp-idf/spiffs/libspiffs.a
 C:/esp_projects/equalizer/build/esp-idf/wifi_provisioning/libwifi_provisioning.a
-C:/esp_projects/equalizer/build/esp-idf/imp44/libimp44.a
+C:/esp_projects/equalizer/build/esp-idf/imp441/libimp441.a
 C:/esp_projects/equalizer/build/esp-idf/espressif__esp-dsp/libespressif__esp-dsp.a
 C:/esp_projects/equalizer/build/esp-idf/main/libmain.a

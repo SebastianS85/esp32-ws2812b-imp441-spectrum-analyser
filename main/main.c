@@ -14,7 +14,7 @@
 #include "esp_dsp.h"
 #include "driver/rmt_tx.h"
 #include "led_strip_encoder.h"
-#include "imp44.h"
+#include "imp441.h"
 
 static const char *TAG = "SPECTRUM";
 
@@ -404,8 +404,8 @@ void app_main(void)
     // Start microphone
     ret = imp441_start(&mic_handle);
     if (ret != ESP_OK) {
-        ESP_LOGE(TAG, "Failed to start IMP44: %s", esp_err_to_name(ret));
-        imp44_deinit(&mic_handle);
+        ESP_LOGE(TAG, "Failed to start IMP441: %s", esp_err_to_name(ret));
+        imp441_deinit(&mic_handle);
         return;
     }
 
@@ -416,8 +416,8 @@ void app_main(void)
     BaseType_t task_ret = xTaskCreate(spectrum_task, "spectrum_task", 16384, &mic_handle, 5, NULL);
     if (task_ret != pdPASS) {
         ESP_LOGE(TAG, "Failed to create spectrum task");
-        imp44_stop(&mic_handle);
-        imp44_deinit(&mic_handle);
+        imp441_stop(&mic_handle);
+        imp441_deinit(&mic_handle);
         return;
     }
 

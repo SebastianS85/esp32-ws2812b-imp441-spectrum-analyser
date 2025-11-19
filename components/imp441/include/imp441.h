@@ -15,7 +15,7 @@ extern "C" {
 #endif
 
 /**
- * @brief IMP44 microphone configuration structure
+ * @brief IMP441 microphone configuration structure
  */
 typedef struct {
     int bck_io_num;        /*!< BCK (bit clock) GPIO number */
@@ -23,64 +23,64 @@ typedef struct {
     int data_in_num;       /*!< Data input GPIO number */
     uint32_t sample_rate;  /*!< Sample rate in Hz (e.g., 44100, 48000) */
     uint8_t bits_per_sample; /*!< Bits per sample (16, 24, 32) */
-} imp44_config_t;
+} imp441_config_t;
 
 /**
- * @brief IMP44 microphone handle
+ * @brief IMP441 microphone handle
  */
 typedef struct {
     i2s_chan_handle_t rx_handle;
-    imp44_config_t config;
+    imp441_config_t config;
     bool is_initialized;
-} imp44_handle_t;
+} imp441_handle_t;
 
 /**
- * @brief Initialize IMP44 microphone
+ * @brief Initialize IMP441 microphone
  * 
- * @param handle Pointer to IMP44 handle
+ * @param handle Pointer to IMP441 handle
  * @param config Pointer to configuration structure
  * @return esp_err_t ESP_OK on success
  */
-esp_err_t imp44_init(imp44_handle_t *handle, const imp44_config_t *config);
+esp_err_t imp441_init(imp441_handle_t *handle, const imp441_config_t *config);
 
 /**
- * @brief Deinitialize IMP44 microphone
+ * @brief Deinitialize IMP441 microphone
  * 
- * @param handle Pointer to IMP44 handle
+ * @param handle Pointer to IMP441 handle
  * @return esp_err_t ESP_OK on success
  */
-esp_err_t imp44_deinit(imp44_handle_t *handle);
+esp_err_t imp441_deinit(imp441_handle_t *handle);
 
 /**
  * @brief Start microphone recording
  * 
- * @param handle Pointer to IMP44 handle
+ * @param handle Pointer to IMP441 handle
  * @return esp_err_t ESP_OK on success
  */
-esp_err_t imp44_start(imp44_handle_t *handle);
+esp_err_t imp441_start(imp441_handle_t *handle);
 
 /**
  * @brief Stop microphone recording
  * 
- * @param handle Pointer to IMP44 handle
+ * @param handle Pointer to IMP441 handle
  * @return esp_err_t ESP_OK on success
  */
-esp_err_t imp44_stop(imp44_handle_t *handle);
+esp_err_t imp441_stop(imp441_handle_t *handle);
 
 /**
  * @brief Read audio data from microphone
  * 
- * @param handle Pointer to IMP44 handle
+ * @param handle Pointer to IMP441 handle
  * @param dest Destination buffer for audio data
  * @param size Size of data to read in bytes
  * @param bytes_read Pointer to store actual bytes read
  * @param timeout_ms Timeout in milliseconds
  * @return esp_err_t ESP_OK on success
  */
-esp_err_t imp44_read(imp44_handle_t *handle, void *dest, size_t size, size_t *bytes_read, uint32_t timeout_ms);
+esp_err_t imp441_read(imp441_handle_t *handle, void *dest, size_t size, size_t *bytes_read, uint32_t timeout_ms);
 
 #ifdef __cplusplus
 }
 #endif
 
-#endif // IMP44_H
+#endif // IMP441_H

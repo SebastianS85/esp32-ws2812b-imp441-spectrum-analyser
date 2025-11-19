@@ -1740,7 +1740,7 @@ rule C_STATIC_LIBRARY_LINKER____idf_wifi_provisioning_
 #############################################
 # Rule for compiling C files.
 
-rule C_COMPILER____idf_imp44_
+rule C_COMPILER____idf_imp441_
   depfile = $DEP_FILE
   deps = gcc
   command = C:\esp\tools\riscv32-esp-elf\esp-13.2.0_20240530\riscv32-esp-elf\bin\riscv32-esp-elf-gcc.exe $DEFINES $INCLUDES $FLAGS -MD -MT $out -MF $DEP_FILE -o $out -c $in
@@ -1750,7 +1750,7 @@ rule C_COMPILER____idf_imp44_
 #############################################
 # Rule for linking C static library.
 
-rule C_STATIC_LIBRARY_LINKER____idf_imp44_
+rule C_STATIC_LIBRARY_LINKER____idf_imp441_
   command = cmd.exe /C "$PRE_LINK && C:\esp\tools\cmake\3.24.0\bin\cmake.exe -E rm -f $TARGET_FILE && C:\esp\tools\riscv32-esp-elf\esp-13.2.0_20240530\riscv32-esp-elf\bin\riscv32-esp-elf-ar.exe qc $TARGET_FILE $LINK_FLAGS $in && C:\esp\tools\riscv32-esp-elf\esp-13.2.0_20240530\riscv32-esp-elf\bin\riscv32-esp-elf-ranlib.exe $TARGET_FILE && $POST_BUILD"
   description = Linking C static library $TARGET_FILE
   restat = $RESTAT
